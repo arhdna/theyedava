@@ -1,5 +1,5 @@
 package com.sai.one.chache;
 
-public class RedisImpl implements Cache{
+public class RedisImpl implements Cache {
 
 }

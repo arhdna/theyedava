@@ -1,28 +1,26 @@
 package com.sai.one.service;
 
-import java.util.List;
-
 import com.sai.one.dto.User;
 
+import java.util.List;
+
 /**
- * 
  * @author shravan
- *
  */
 public interface UserService {
 
-	User findById(long id);
+    User findById(long id);
 
-	User saveUser(User user);
+    User saveUser(User user);
 
-	void updateUser(User user);
+    void updateUser(User user);
 
-	void deleteUserById(long id);
+    void deleteUserById(long id);
 
-	List<User> findAllUsers();
+    List<User> findAllUsers();
 
-	void deleteAllUsers();
+    void deleteAllUsers();
 
-	public boolean isUserExist(User user);
+    boolean isUserExist(User user);
 
 }
