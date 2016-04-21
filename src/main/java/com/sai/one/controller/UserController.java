@@ -8,6 +8,7 @@ import com.sai.one.service.UserService;
 import com.sai.one.util.ValidatorErrorUtil;
 import com.sai.one.validators.UserCreateValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -43,22 +44,22 @@ public class UserController {
     @RequestMapping(value = UrlConstants.UserController.USER_CREATE, method = RequestMethod.POST)
     public ResponseEntity<Entity> createUser(@RequestBody User user, BindingResult result) {
         LOGGER.info("INSIDE UserController.createUser method with body " + user);
-        ResponseEntity<Entity> response = null;
+        ResponseEntity<Entity> response;
         try {
             UserCreateValidator validator = new UserCreateValidator();
             Optional<ResponseEntity<Entity>> ent = errorUtil.hasErrors(user, result, validator);
             if (ent.isPresent()) {
                 return ent.get();
             }
-            userService.saveUser(user);
-            response = new ResponseEntity<Entity>(user, HttpStatus.OK);
+            //userService.saveUser(user);
+            response = new ResponseEntity<>(user, HttpStatus.OK);
         } catch (Exception e) {
             response = errorUtil.populateCatch(e);
         }
         LOGGER.info("COMPLETED UserController.createUser method with body " + user);
         return response;
     }
-
+    
     @RequestMapping(value = UrlConstants.UserController.USER_UPDATE, method = RequestMethod.PUT)
     public ResponseEntity<Entity> updateUser(@RequestBody User user) {
         LOGGER.info("INSIDE RegistrationController.register method with body " + user);
@@ -68,7 +69,7 @@ public class UserController {
             e.printStackTrace();
         }
         LOGGER.info("COMPLETED RegistrationController.register method with body " + user);
-        return new ResponseEntity<Entity>(user, HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @RequestMapping(value = UrlConstants.UserController.USER_DELETE, method = RequestMethod.DELETE)
@@ -80,7 +81,7 @@ public class UserController {
             e.printStackTrace();
         }
         LOGGER.info("COMPLETED RegistrationController.register method with body ");
-        return new ResponseEntity<Entity>(new EmptyEntity(), HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(new EmptyEntity(), HttpStatus.NO_CONTENT);
     }
 
     @RequestMapping(value = UrlConstants.UserController.USER_GET, method = RequestMethod.GET)
@@ -93,7 +94,7 @@ public class UserController {
             e.printStackTrace();
         }
         LOGGER.info("COMPLETED RegistrationController.register method with body ");
-        return new ResponseEntity<Entity>(user, HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
 }
