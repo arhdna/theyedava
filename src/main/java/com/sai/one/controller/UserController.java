@@ -5,6 +5,7 @@ import com.sai.one.dto.EmptyEntity;
 import com.sai.one.dto.Entity;
 import com.sai.one.dto.User;
 import com.sai.one.service.UserService;
+import com.sai.one.util.RabbitMQUtil;
 import com.sai.one.util.ValidatorErrorUtil;
 import com.sai.one.validators.UserCreateValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RabbitMQUtil rabbitUtil;
+
     /**
      * create a user
      *
@@ -47,11 +51,12 @@ public class UserController {
         ResponseEntity<Entity> response;
         try {
             UserCreateValidator validator = new UserCreateValidator();
-            Optional<ResponseEntity<Entity>> ent = errorUtil.hasErrors(user, result, validator);
-            if (ent.isPresent()) {
-                return ent.get();
+            Optional<ResponseEntity<Entity>> errorEntity = errorUtil.hasErrors(user, result, validator);
+            if (errorEntity.isPresent()) {
+                LOGGER.warning("ERROR UserController.createUser method with body " + user);
+                return errorEntity.get();
             }
-            //userService.saveUser(user);
+            rabbitUtil.sendMessage(user);
             response = new ResponseEntity<>(user, HttpStatus.OK);
         } catch (Exception e) {
             response = errorUtil.populateCatch(e);

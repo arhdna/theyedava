@@ -10,7 +10,7 @@ import java.util.OptionalInt;
  */
 public class User implements Entity {
 
-    private OptionalInt id;
+    private Optional<Integer> id;
     @JsonProperty("first_name")
     private Optional<String> firstName;
     @JsonProperty("last_name")
@@ -18,11 +18,11 @@ public class User implements Entity {
     private Optional<String> email;
     private Optional<String> password;
 
-    public OptionalInt getId() {
+    public Optional<Integer> getId() {
         return id;
     }
 
-    public void setId(OptionalInt id) {
+    public void setId(Optional<Integer> id) {
         this.id = id;
     }
 

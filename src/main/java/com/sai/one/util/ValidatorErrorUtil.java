@@ -20,22 +20,22 @@ public class ValidatorErrorUtil {
         Optional<ResponseEntity<Entity>> resp = Optional.empty();
         valid.validate(entity, result);
         Optional<List<FieldError>> list = Optional.ofNullable(result.getFieldErrors());
-        if (list.isPresent()) {
-            resp = Optional.of(populateError(entity, list.get()));
+        if (list.isPresent()&&!list.get().isEmpty()) {
+            resp = Optional.of(populateError(list.get()));
         }
         return resp;
     }
 
-    public ResponseEntity<Entity> populateError(Entity entity, List<? extends Object> listErrs) {
+    public ResponseEntity<Entity> populateError(List<? extends Object> listErrs) {
         GenericError error = new GenericError();
         error.setMessage(listErrs);
-        return new ResponseEntity<>(entity, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
     public ResponseEntity<Entity> populateCatch(Exception e) {
         List<String> listErrs = new ArrayList<>();
         listErrs.add(e.getMessage());
         e.printStackTrace();
-        return populateError(new GenericError(), listErrs);
+        return populateError(listErrs);
     }
 }

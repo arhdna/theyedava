@@ -11,7 +11,7 @@ import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
-import org.springframework.amqp.support.converter.JsonMessageConverter;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -61,14 +61,14 @@ public class RabbitMQConfig {
         container.setConnectionFactory(connectionFactory());
         container.setQueues(registerQueue());
         container.setMessageConverter(jsonMessageConverter());
-        container.setConcurrentConsumers(Runtime.getRuntime().availableProcessors());
+        container.setConcurrentConsumers(2);
         container.setMessageListener(registerListenerAdapter(registerReceiver()));
         return container;
     }
 
     @Bean
     public MessageConverter jsonMessageConverter() {
-        return new JsonMessageConverter();
+        return new Jackson2JsonMessageConverter();
     }
 
     @Bean
@@ -78,7 +78,7 @@ public class RabbitMQConfig {
 
     @Bean
     MessageListenerAdapter registerListenerAdapter(RegisterListenerRabbitMQ receiver) {
-        return new MessageListenerAdapter(receiver, "receiveMessage");
+        return new MessageListenerAdapter(receiver, PropertyConstants.RabbitMQ.LISTENER_METHOD);
     }
 
 }

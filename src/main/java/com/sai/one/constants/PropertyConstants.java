@@ -11,6 +11,7 @@ public final class PropertyConstants {
         public static final String REGISTER_EXCHANGE = "user.register.exchange";
         public static final String REGISTER_QUEUE = "register.queue";
         public static final String REGISTER_ROUTINGKEY = "register";
+        public static final String LISTENER_METHOD = "receiveMessageForUserRegistration";
     }
 
 }
