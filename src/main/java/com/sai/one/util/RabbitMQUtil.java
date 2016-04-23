@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by shravan on 4/22/2016.
+ * Created by shravan
  */
 @Component
 public class RabbitMQUtil {

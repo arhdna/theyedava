@@ -7,13 +7,13 @@ import java.util.List;
 public class GenericError implements Entity {
 
     @JsonProperty("error_message")
-    private List<? extends Object> message;
+    private List<?> message;
 
-    public List<? extends Object> getMessage() {
+    public List<?> getMessage() {
         return message;
     }
 
-    public void setMessage(List<? extends Object> message) {
+    public void setMessage(List<?> message) {
         this.message = message;
     }
 

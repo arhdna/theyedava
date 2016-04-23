@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by shravan on 4/20/2016.
+ * Created by shravan
  */
 @Configuration
 public class RabbitMQConfig {

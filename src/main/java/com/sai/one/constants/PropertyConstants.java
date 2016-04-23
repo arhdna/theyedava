@@ -1,7 +1,7 @@
 package com.sai.one.constants;
 
 /**
- * Created by shravan on 4/21/2016.
+ * Created by shravan
  */
 public final class PropertyConstants {
     public static class RabbitMQ {
@@ -11,7 +11,7 @@ public final class PropertyConstants {
         public static final String REGISTER_EXCHANGE = "user.register.exchange";
         public static final String REGISTER_QUEUE = "register.queue";
         public static final String REGISTER_ROUTINGKEY = "register";
-        public static final String LISTENER_METHOD = "receiveMessageForUserRegistration";
+        //public static final String LISTENER_METHOD = "receiveMessageForUserRegistration";
         public static final int REGISTER_CONSUMERS = 2;
     }
 
