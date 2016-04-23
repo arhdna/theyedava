@@ -7,7 +7,8 @@ import com.sai.one.dto.User;
  */
 public class RegisterListenerRabbitMQ {
 
-    public void receiveMessageForUserRegistration(User user){
-        System.out.println(user);
+    public void handleMessage(User user) {
+        System.out.println(user.getEmail());
     }
+
 }

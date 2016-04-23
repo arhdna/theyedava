@@ -2,6 +2,7 @@ package com.sai.one.validators;
 
 import com.sai.one.constants.ValidationConstants;
 import com.sai.one.dto.User;
+import com.sai.one.dto.UserOptional;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -16,7 +17,7 @@ public class UserCreateValidator implements Validator {
     public void validate(Object target, Errors errors) {
         // TODO Auto-generated method stub
 
-        User user = (User) target;
+        UserOptional user = (UserOptional) target;
 
         if (!user.getFirstName().isPresent())
             errors.rejectValue("first_name", ValidationConstants.User.FIRST_NAME);

@@ -21,21 +21,21 @@ public class ValidatorErrorUtil {
         valid.validate(entity, result);
         Optional<List<FieldError>> list = Optional.ofNullable(result.getFieldErrors());
         if (list.isPresent()&&!list.get().isEmpty()) {
-            resp = Optional.of(populateError(list.get()));
+            resp = Optional.of(populateError(list.get(),HttpStatus.BAD_REQUEST));
         }
         return resp;
     }
 
-    public ResponseEntity<Entity> populateError(List<? extends Object> listErrs) {
+    public ResponseEntity<Entity> populateError(List<? extends Object> listErrs, HttpStatus httpStatus) {
         GenericError error = new GenericError();
         error.setMessage(listErrs);
-        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(error, httpStatus);
     }
 
-    public ResponseEntity<Entity> populateCatch(Exception e) {
+    public ResponseEntity<Entity> populateCatch(Exception e, HttpStatus httpStatus) {
         List<String> listErrs = new ArrayList<>();
         listErrs.add(e.getMessage());
         e.printStackTrace();
-        return populateError(listErrs);
+        return populateError(listErrs, httpStatus);
     }
 }

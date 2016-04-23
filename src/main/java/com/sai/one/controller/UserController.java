@@ -4,7 +4,9 @@ import com.sai.one.constants.UrlConstants;
 import com.sai.one.dto.EmptyEntity;
 import com.sai.one.dto.Entity;
 import com.sai.one.dto.User;
+import com.sai.one.dto.UserOptional;
 import com.sai.one.service.UserService;
+import com.sai.one.util.ClassTransformUtil;
 import com.sai.one.util.RabbitMQUtil;
 import com.sai.one.util.ValidatorErrorUtil;
 import com.sai.one.validators.UserCreateValidator;
@@ -37,7 +39,10 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private RabbitMQUtil rabbitUtil;
+    private RabbitMQUtil rabbitMQUtil;
+
+    @Autowired
+    private ClassTransformUtil classTransformUtil;
 
     /**
      * create a user
@@ -50,16 +55,17 @@ public class UserController {
         LOGGER.info("INSIDE UserController.createUser method with body " + user);
         ResponseEntity<Entity> response;
         try {
+            UserOptional userOptional = classTransformUtil.populateUserOptional(user);
             UserCreateValidator validator = new UserCreateValidator();
-            Optional<ResponseEntity<Entity>> errorEntity = errorUtil.hasErrors(user, result, validator);
+            Optional<ResponseEntity<Entity>> errorEntity = errorUtil.hasErrors(userOptional, result, validator);
             if (errorEntity.isPresent()) {
                 LOGGER.warning("ERROR UserController.createUser method with body " + user);
                 return errorEntity.get();
             }
-            rabbitUtil.sendMessage(user);
+            rabbitMQUtil.sendMessage(user);
             response = new ResponseEntity<>(user, HttpStatus.OK);
         } catch (Exception e) {
-            response = errorUtil.populateCatch(e);
+            response = errorUtil.populateCatch(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         LOGGER.info("COMPLETED UserController.createUser method with body " + user);
         return response;
