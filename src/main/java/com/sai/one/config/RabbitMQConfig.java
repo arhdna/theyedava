@@ -91,7 +91,7 @@ public class RabbitMQConfig {
     public DefaultClassMapper typeMapper() {
         DefaultClassMapper typeMapper = new DefaultClassMapper();
         Map<String,  Class<?>> idClassMapping = new HashMap<>();
-        idClassMapping.put("user", User.class);
+        idClassMapping.put(PropertyConstants.RabbitMQ.TYPE_MAPPER, User.class);
         typeMapper.setIdClassMapping(idClassMapping);
         return typeMapper;
     }

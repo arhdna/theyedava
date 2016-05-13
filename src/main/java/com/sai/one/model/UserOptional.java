@@ -1,4 +1,6 @@
-package com.sai.one.dto;
+package com.sai.one.model;
+
+import com.sai.one.dto.Entity;
 
 import java.util.Optional;
 

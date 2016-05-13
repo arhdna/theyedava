@@ -1,5 +1,6 @@
 package com.sai.one.config;
 
+import com.sai.one.constants.PropertyConstants;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
@@ -12,20 +13,17 @@ import javax.servlet.ServletRegistration;
 
 public class AppInitializer implements WebApplicationInitializer {
 
-    private static final String CONFIG_LOCATION = "com.sai.one.config";
-    private static final String MAPPING_URL = "/*";
-
     public void onStartup(ServletContext servletContext) throws ServletException {
         WebApplicationContext context = getContext();
         servletContext.addListener(new ContextLoaderListener(context));
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("DispatcherServlet", new DispatcherServlet(context));
         dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping(MAPPING_URL);
+        dispatcher.addMapping(PropertyConstants.App.MAPPING_URL);
     }
 
     private AnnotationConfigWebApplicationContext getContext() {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.setConfigLocation(CONFIG_LOCATION);
+        context.setConfigLocation(PropertyConstants.App.CONFIG_LOCATION);
         return context;
     }
 

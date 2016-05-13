@@ -1,7 +1,7 @@
 package com.sai.one.util;
 
 import com.sai.one.dto.User;
-import com.sai.one.dto.UserOptional;
+import com.sai.one.model.UserOptional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -2,7 +2,7 @@ package com.sai.one.validators;
 
 import com.sai.one.constants.ValidationConstants;
 import com.sai.one.dto.User;
-import com.sai.one.dto.UserOptional;
+import com.sai.one.model.UserOptional;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 

@@ -12,6 +12,9 @@
         <spring.version>4.2.0.RELEASE</spring.version>
         <jackson.version>2.5.3</jackson.version>
         <spring.rabbit.version>1.5.5.RELEASE</spring.rabbit.version>
+        <jpa.version>1.0.0.Final</jpa.version>
+        <mysql.version>6.0.2</mysql.version>
+        <entitymanager.version>5.1.0.Final</entitymanager.version>
     </properties>
 
     <dependencies>
@@ -51,6 +54,33 @@
             <artifactId>spring-rabbit</artifactId>
             <version>${spring.rabbit.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>${jpa.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${entitymanager.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
 
     </dependencies>
     <build>
