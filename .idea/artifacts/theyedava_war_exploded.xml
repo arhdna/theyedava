@@ -46,6 +46,13 @@
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:6.0.2" />
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:4.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.data:spring-data-couchbase:2.1.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.data:spring-data-commons:1.12.1.RELEASE" />
+          <element id="library" level="project" name="Maven: com.couchbase.client:java-client:2.2.3" />
+          <element id="library" level="project" name="Maven: com.couchbase.client:core-io:1.2.3" />
+          <element id="library" level="project" name="Maven: io.reactivex:rxjava:1.0.15" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.19" />
+          <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.19" />
         </element>
       </element>
       <element id="directory" name="META-INF">

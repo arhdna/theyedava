@@ -31,4 +31,13 @@ public final class PropertyConstants {
         public static final String DIALECT = "org.hibernate.dialect.MySQL5Dialect";
     }
 
+    public static class EncryptDecrypt{
+        public static final String HMAC_ALGORITHM = "HmacSHA256";
+        public static final String SEPARATOR = ".^.";
+    }
+
+    public static class Authentication{
+        public static final String X_YEDAVA_AUTH = "X-YEDAVA-AUTH";
+    }
+
 }
