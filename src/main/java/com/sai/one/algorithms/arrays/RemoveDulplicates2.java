@@ -22,7 +22,7 @@ public class RemoveDulplicates2 {
             if (nums[j] != nums[i] || (nums[j] == nums[i] && nums[j] != nums[i - 1])) {
                 i++;
                 nums[i] = nums[j];
-            }
+        }
         }
 
         return i + 1;
