@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="theyedava:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="theyedava.war">
-      <element id="artifact" artifact-name="theyedava:war exploded" />
-    </root>
-  </artifact>
-</component>
